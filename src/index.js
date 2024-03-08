@@ -11,3 +11,23 @@ const refs = {
   catInfo: document.querySelector('.cat-info'),
 };
 
+async function fetchBreeds() {
+  await axios
+    .get('https://api.thecatapi.com/v1/breeds')
+    .then(response => {
+      console.log(response.data);
+      const option = response.data
+        .map(({ id, name }) => `<option value="${id}">${name}</option>`)
+        .join('');
+      refs.select.insertAdjacentHTML('afterbegin', option);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+fetchBreeds();
+
+async function fetchCatByBreed(breedId) {
+    axios.get(``)
+}
