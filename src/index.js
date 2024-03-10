@@ -18,7 +18,6 @@ async function fetchBreeds() {
   await axios
     .get('https://api.thecatapi.com/v1/breeds')
     .then(response => {
-      console.log(response.data);
       const option = response.data
         .map(({ id, name }) => `<option value="${id}">${name}</option>`)
         .join('');
@@ -34,10 +33,11 @@ async function fetchCatByBreed(breedId) {
   await axios
     .get(`${URL}${breedId}`)
     .then(data => {
-      console.log(data);
+        // console.log(data.data);
+        return data;
     })
     .catch(error => {
-      console.error('Error:', error);
+        console.error('Error:', error);
     });
 }
 
@@ -45,6 +45,7 @@ async function changeSelect(event) {
   const breedId = event.target.value;
   try {
     const posts = await fetchCatByBreed(breedId);
+    console.log(fetchCatByBreed(breedId));
     renderCatInfo(posts);
   } catch (error) {
     console.log(error);
@@ -53,14 +54,15 @@ async function changeSelect(event) {
 
 function renderCatInfo(arr) {
   const markup = arr
-    .map(({ description, name, temperament, image: { url } }) => {
+    .flatMap(({description, name, temperament, vetstreet_url}) => {
       return `<li class="cat-cart">
-<img class="cat-img" src="${url}" alt="${name}" />
+<img class="cat-img" src="${vetstreet_url}" alt="${name}" />
 <h2 class="cat-name">${name}</h2>
 <p class="cat-text">${description}</p>
 <h4 class="title-temperament">Temperament:<span class="temperament">${temperament}</span></h4>
 </li>`;
     })
     .join('');
+    console.log(markup);
   refs.catInfo.innerHTML = markup;
 }
