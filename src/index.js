@@ -14,30 +14,6 @@ const refs = {
 
 const slim = new SlimSelect({
   select: '#multiple',
-  settings: {
-    // Below are a list of optional fields
-    // their values are the defaults
-    disabled: false,
-    alwaysOpen: false,
-    showSearch: true,
-    searchPlaceholder: 'Search',
-    searchText: 'No Results',
-    searchingText: 'Searching...',
-    searchHighlight: false,
-    closeOnSelect: true,
-    contentLocation: document.body,
-    contentPosition: 'absolute',
-    openPosition: 'auto', // options: auto, up, down
-    placeholderText: 'Select Value',
-    allowDeselect: false,
-    hideSelected: false,
-    showOptionTooltips: false,
-    minSelected: 0,
-    maxSelected: 1000,
-    timeoutDelay: 200,
-    maxValuesShown: 20,
-    maxValuesMessage: '{number} selected',
-  },
 });
 
 const errorText = refs.error.textContent;
