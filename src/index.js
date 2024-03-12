@@ -12,21 +12,20 @@ const refs = {
   catInfo: document.querySelector('.cat-info'),
 };
 
-const slim = new SlimSelect({
-  select: '#multiple',
-});
-
 const errorText = refs.error.textContent;
 
 fetchBreeds();
+
 refs.select.addEventListener('change', changeSelect);
 
 async function fetchBreeds() {
   await axios
     .get('breeds')
     .then(response => {
-      const options = response.data.map(({ id, name }) => ({ value: id, text: name }));
-      slim.setData(options);
+      const options = response.data.map(
+        ({ id, name }) => `<option value="${id}">${name}</option>`
+      );
+      refs.select.insertAdjacentHTML('beforeend', options);
     })
     .catch(error => {
       console.error('Error:', error);
