@@ -24,7 +24,9 @@ async function changeSelect(event) {
   const breedId = event.target.value;
   try {
     const posts = await fetchCatByBreed(breedId);
+    refs.loader.classList.remove("hidden");
     renderCatInfo(posts);
+    refs.loader.classList.add("hidden");
   } catch (error) {
     console.log(error);
     Notiflix.Notify.failure(errorText);
@@ -42,6 +44,5 @@ function renderCatInfo(data) {
 <p class="cat-text">${description}</p>
 <h4 class="title-temperament">Temperament:<span class="temperament">${temperament}</span></h4>
 </div>`;
-  console.log(markup);
   refs.catInfo.innerHTML = markup;
 }

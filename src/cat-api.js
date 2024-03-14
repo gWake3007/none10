@@ -9,10 +9,11 @@ export {fetchBreeds};
 export {fetchCatByBreed};
 
 async function fetchBreeds() {
-  // refs.loader.hidden = false;
   await axios
     .get('breeds')
     .then(response => {
+      refs.select.classList.add("hidden");
+      refs.loader.classList.remove("hidden");
       const options = response.data.map(
         ({ id, name }) => `<option value="${id}">${name}</option>`
       );
@@ -25,7 +26,6 @@ async function fetchBreeds() {
       console.error('Error:', error);
       Notiflix.Notify.failure(errorText);
     });
-    // refs.loader.hidden = true;
 }
 
 async function fetchCatByBreed(breedId) {

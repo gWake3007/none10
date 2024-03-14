@@ -2,7 +2,7 @@ body {
     background-color: #263038;
 }
 
-.loader {
+.loader{
     transform: rotateZ(45deg);
     perspective: 1000px;
     border-radius: 50%;
@@ -90,5 +90,3 @@ body {
     border: 1px solid hidden;
     border-radius: 5px;
   }
-
-  
